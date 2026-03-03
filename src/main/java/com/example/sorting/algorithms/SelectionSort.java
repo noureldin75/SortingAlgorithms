@@ -13,7 +13,7 @@ public class SelectionSort implements SortingAlgorithms {
         ArrayList<sortStep> steps = new ArrayList<>();
         int n = array.length;
         if (recordSteps) {
-            steps.add(new sortStep(array, -1, -1));
+            steps.add(new sortStep.Builder().setArrayState(array).build());
         }
         for (int i = 0; i < n; i++) {
             int min = array[i];
@@ -25,7 +25,7 @@ public class SelectionSort implements SortingAlgorithms {
                     minidx = j;
                 }
                 if (recordSteps) {
-                    steps.add(new sortStep(array, minidx, j));
+                    steps.add(new sortStep.Builder().setArrayState(array).setCurrentidx(minidx).setCompareidx(j).build());
                 }
                 comparisons++;
             }
@@ -36,7 +36,8 @@ public class SelectionSort implements SortingAlgorithms {
                 interchanges++;
             }
             if (recordSteps) {
-                steps.add(new sortStep(array, minidx, i));
+                steps.add(new sortStep.Builder().setArrayState(array).setCurrentidx(i).setCompareidx(minidx).build());
+
             }
 
         }

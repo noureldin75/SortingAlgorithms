@@ -24,7 +24,8 @@ public class BubbleSort implements SortingAlgorithms {
                     array[j] = array[j+1];
                     array[j+1] = temp;
                     if(recordSteps){
-                        steps.add(new sortStep(array,array[j],array[j+1]));
+                        steps.add(new sortStep.Builder().setArrayState(array)
+                                        .setCurrentidx(j).setCompareidx(j+1).build());
                     }
                     interchanges++;
                 }

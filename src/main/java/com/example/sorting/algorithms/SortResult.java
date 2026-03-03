@@ -16,7 +16,7 @@ public class SortResult {
     }
 
     public long getRunTimeMs() {
-        return runTimeMs;
+        return runTimeMs/1000000;
     }
 
     public long getComparisons() {
@@ -30,4 +30,6 @@ public class SortResult {
     public List<sortStep> getVisualizationSteps() {
         return visualizationSteps;
     }
+
+
 }
