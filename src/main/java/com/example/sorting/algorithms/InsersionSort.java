@@ -18,14 +18,18 @@ public class InsersionSort implements SortingAlgorithms {
         for (int i = 1; i < n; i++) {
             int key = array[i];
             int j = i - 1;
-            comparisons += i;
-            while (j >= 0 && array[j] > key) {
-                array[j + 1] = array[j];
-                j--;
-                interchanges++;
-                if (recordSteps) {
-                    steps.add(new sortStep.Builder().setArrayState(array)
-                            .setCurrentidx(j + 1).setCompareidx(j).build());
+            while (j >= 0) {
+                comparisons++;
+                if (array[j] > key) {
+                    array[j + 1] = array[j];
+                    j--;
+                    interchanges++;
+                    if (recordSteps) {
+                        steps.add(new sortStep.Builder().setArrayState(array)
+                                .setCurrentidx(j + 1).setCompareidx(j).build());
+                    }
+                } else {
+                    break;
                 }
             }
             array[j + 1] = key;

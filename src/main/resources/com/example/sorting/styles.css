@@ -1,0 +1,318 @@
+.root-pane {
+    -fx-background-color: #1e1e2e;
+    -fx-font-family: 'Segoe UI', sans-serif;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane {
+    -fx-tab-min-width: 150px;
+    -fx-tab-max-width: 250px;
+    -fx-tab-min-height: 40px;
+    -fx-tab-max-height: 40px;
+}
+
+.tab {
+    -fx-background-color: #2a2a3bc0;
+    -fx-background-insets: 0;
+    -fx-background-radius: 8 8 0 0;
+    -fx-padding: 0 10 0 10;
+}
+
+.tab:selected {
+    -fx-background-color: #3f3f5a;
+}
+
+.tab .tab-label {
+    -fx-text-fill: #cdd6f4;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: #f38ba8;
+}
+
+.comparison-top-panel, .comparison-bottom-panel {
+    -fx-background-color: #1e1e2e;
+}
+
+.input-card {
+    -fx-background-color: #313244;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 5);
+}
+
+.card-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #89b4fa;
+    -fx-padding: 0 0 10 0;
+}
+
+.label, .field-label, .metric-label, .sidebar-title, .status-label, .toolbar-label {
+    -fx-text-fill: #cdd6f4;
+}
+
+.status-label {
+    -fx-text-fill: #a6e3a1;
+    -fx-font-style: italic;
+}
+
+.button {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-padding: 8 15 8 15;
+}
+
+.btn-primary {
+    -fx-background-color: #89b4fa;
+    -fx-text-fill: #1e1e2e;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #b4befe;
+}
+
+.btn-primary:pressed {
+    -fx-background-color: #89dceb;
+}
+
+.btn-secondary {
+    -fx-background-color: #45475a;
+    -fx-text-fill: #cdd6f4;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #585b70;
+}
+
+.btn-secondary:pressed {
+    -fx-background-color: #313244;
+}
+
+.btn-warning {
+    -fx-background-color: #f9e2af;
+    -fx-text-fill: #1e1e2e;
+}
+
+.btn-warning:hover {
+    -fx-background-color: #f38ba8;
+    -fx-text-fill: #1e1e2e;
+}
+
+.text-field {
+    -fx-background-color: #181825;
+    -fx-text-fill: #cdd6f4;
+    -fx-prompt-text-fill: #6c7086;
+    -fx-border-color: #585b70;
+    -fx-border-radius: 3px;
+    -fx-padding: 5px;
+}
+
+.text-field:focused {
+    -fx-border-color: #89b4fa;
+}
+
+.combo-box {
+    -fx-background-color: #181825;
+    -fx-border-color: #585b70;
+    -fx-border-radius: 3px;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: #cdd6f4;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.combo-box .arrow {
+    -fx-background-color: #cdd6f4;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #313244;
+    -fx-border-color: #585b70;
+}
+
+.combo-box-popup .list-view .list-cell {
+    -fx-background-color: #313244;
+    -fx-text-fill: #cdd6f4;
+}
+
+.combo-box-popup .list-view .list-cell:hover {
+    -fx-background-color: #45475a;
+}
+
+.combo-box-popup .list-view .list-cell:selected {
+    -fx-background-color: #89b4fa;
+    -fx-text-fill: #1e1e2e;
+}
+
+.check-box .box {
+    -fx-background-color: #181825;
+    -fx-border-color: #585b70;
+    -fx-border-radius: 3px;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #89b4fa;
+    -fx-border-color: #89b4fa;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: #1e1e2e;
+}
+
+.check-box .text {
+    -fx-fill: #cdd6f4;
+}
+
+.table-view {
+    -fx-background-color: #1e1e2e;
+    -fx-border-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #313244;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: #313244;
+    -fx-border-color: #45475a;
+    -fx-border-width: 0 1 1 0;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #89b4fa;
+    -fx-font-weight: bold;
+    -fx-padding: 5 0 5 0;
+}
+
+.table-row-cell {
+    -fx-background-color: #1e1e2e;
+    -fx-border-color: #313244;
+    -fx-border-width: 0 0 1 0;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #181825;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #45475a;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #585b70;
+}
+
+.table-row-cell .text {
+    -fx-fill: #cdd6f4;
+}
+
+.progress-bar {
+    -fx-accent: #a6e3a1;
+}
+
+.progress-bar .track {
+    -fx-background-color: #313244;
+    -fx-background-radius: 5px;
+}
+
+.progress-bar .bar {
+    -fx-background-radius: 5px;
+}
+
+.viz-toolbar {
+    -fx-background-color: #313244;
+    -fx-border-color: #1e1e2e;
+    -fx-border-width: 0 0 2 0;
+}
+
+.canvas-container {
+    -fx-background-color: #181825;
+    -fx-border-color: #313244;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+}
+
+.viz-sidebar {
+    -fx-background-color: #1e1e2e;
+    -fx-border-color: #313244;
+    -fx-border-width: 0 0 0 2;
+}
+
+.metrics-box {
+    -fx-background-color: #313244;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px;
+}
+
+.slider .track {
+    -fx-background-color: #313244;
+}
+
+.slider .thumb {
+    -fx-background-color: #89b4fa;
+}
+
+.slider .thumb:hover {
+    -fx-background-color: #b4befe;
+}
+
+.separator *.line {
+    -fx-border-color: #585b70;
+    -fx-border-style: solid;
+    -fx-border-width: 1px 0 0 0;
+}
+
+.separator:vertical *.line {
+    -fx-border-width: 0 1px 0 0;
+}
+
+/* ── Data Source Toggle Bar ── */
+.source-toggle-bar {
+    -fx-background-color: #313244;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 8, 0, 0, 3);
+}
+
+.source-radio {
+    -fx-text-fill: #cdd6f4;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.source-radio .radio {
+    -fx-background-color: #181825;
+    -fx-border-color: #585b70;
+    -fx-border-radius: 50%;
+    -fx-padding: 3px;
+}
+
+.source-radio:selected .radio {
+    -fx-border-color: #89b4fa;
+}
+
+.source-radio .dot {
+    -fx-background-color: transparent;
+    -fx-background-radius: 50%;
+}
+
+.source-radio:selected .dot {
+    -fx-background-color: #89b4fa;
+}
+
+/* ── Disabled panel fade ── */
+.input-card:disabled {
+    -fx-opacity: 0.4;
+}

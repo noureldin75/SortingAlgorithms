@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<TabPane fx:id="mainTabPane" prefHeight="750.0" prefWidth="1100.0" styleClass="root-pane" stylesheets="@styles.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sorting.MainController">
+
+    <fx:define>
+        <ToggleGroup fx:id="dataSourceToggle" />
+    </fx:define>
+
+    <Tab styleClass="tab-header" text="📊 Sorting Comparison">
+        <BorderPane>
+            <top>
+                <VBox spacing="10" styleClass="comparison-top-panel">
+                    <padding>
+                        <Insets bottom="15" left="20" right="20" top="20" />
+                    </padding>
+
+                    <!-- ── Data Source Toggle ── -->
+                    <HBox alignment="CENTER" spacing="30" styleClass="source-toggle-bar">
+                        <padding><Insets bottom="8" left="15" right="15" top="8" /></padding>
+                        <RadioButton fx:id="rbAutoGenerate" selected="true" styleClass="source-radio" text="⚙️ Auto Generate Data" toggleGroup="$dataSourceToggle" />
+                        <RadioButton fx:id="rbLoadFile" styleClass="source-radio" text="📁 Load From File" toggleGroup="$dataSourceToggle" />
+                    </HBox>
+
+                    <HBox alignment="TOP_CENTER" spacing="25">
+
+                        <VBox fx:id="dataGenPanel" spacing="12" styleClass="input-card" HBox.hgrow="ALWAYS">
+                            <padding><Insets bottom="15" left="15" right="15" top="15" /></padding>
+                            <Label styleClass="card-title" text="⚙️ Data Generation" />
+                            <GridPane hgap="15" vgap="12">
+                                <Label text="Type:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                <ComboBox fx:id="arrayTypeCombo" maxWidth="Infinity" promptText="Select Type" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                                <Label text="Size:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                <TextField fx:id="arraySizeField" promptText="e.g., 10000" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                                <Label text="Runs:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                <TextField fx:id="numRunsField" promptText="e.g., 5" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <columnConstraints>
+                           <ColumnConstraints />
+                           <ColumnConstraints />
+                        </columnConstraints>
+                        <rowConstraints>
+                           <RowConstraints />
+                           <RowConstraints />
+                           <RowConstraints />
+                        </rowConstraints>
+                            </GridPane>
+                        </VBox>
+
+                        <VBox fx:id="fileInputPanel" disable="true" spacing="12" styleClass="input-card" HBox.hgrow="ALWAYS">
+                            <padding><Insets bottom="15" left="15" right="15" top="15" /></padding>
+                            <Label styleClass="card-title" text="📁 File Input" />
+                            <VBox alignment="CENTER_LEFT" spacing="12">
+                                <Label styleClass="field-label" text="Load comma-separated integer files:" wrapText="true" />
+                                <Button fx:id="loadFilesBtn" maxWidth="Infinity" onAction="#onLoadFiles" styleClass="btn-secondary" text="Browse Files…" />
+                                <Label fx:id="fileStatusLabel" styleClass="status-label" text="Status: No files loaded" />
+                            </VBox>
+                        </VBox>
+
+                        <VBox spacing="12" styleClass="input-card" HBox.hgrow="ALWAYS">
+                            <padding><Insets bottom="15" left="15" right="15" top="15" /></padding>
+                            <Label styleClass="card-title" text="⚡ Algorithms Selection" />
+                            <FlowPane hgap="20" vgap="15">
+                                <CheckBox fx:id="chkSelection" selected="true" text="Selection Sort" />
+                                <CheckBox fx:id="chkInsertion" selected="true" text="Insertion Sort" />
+                                <CheckBox fx:id="chkBubble" selected="true" text="Bubble Sort" />
+                                <CheckBox fx:id="chkMerge" selected="true" text="Merge Sort" />
+                                <CheckBox fx:id="chkHeap" selected="true" text="Heap Sort" />
+                                <CheckBox fx:id="chkQuick" selected="true" text="Quick Sort" />
+                            </FlowPane>
+                        </VBox>
+
+                    </HBox>
+                </VBox>
+            </top>
+
+            <center>
+                <TableView fx:id="resultsTable" styleClass="results-table" tableMenuButtonVisible="true">
+                    <columns>
+                        <TableColumn fx:id="colAlgorithm" prefWidth="130" text="Algorithm" />
+                        <TableColumn fx:id="colSize" prefWidth="80" text="Size" />
+                        <TableColumn fx:id="colMode" prefWidth="100" text="Mode" />
+                        <TableColumn fx:id="colRuns" prefWidth="60" text="Runs" />
+                        <TableColumn fx:id="colAvgTime" prefWidth="110" text="Avg Time (ms)" />
+                        <TableColumn fx:id="colMinTime" prefWidth="110" text="Min Time (ms)" />
+                        <TableColumn fx:id="colMaxTime" prefWidth="110" text="Max Time (ms)" />
+                        <TableColumn fx:id="colComparisons" prefWidth="120" text="Comparisons" />
+                        <TableColumn fx:id="colSwaps" prefWidth="120" text="Interchanges" />
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                </TableView>
+            </center>
+
+            <bottom>
+                <VBox alignment="CENTER" spacing="12" styleClass="comparison-bottom-panel">
+                    <padding><Insets bottom="15" left="20" right="20" top="10" /></padding>
+                    <ProgressBar fx:id="comparisonProgress" maxWidth="Infinity" progress="0.0" styleClass="progress-bar" visible="false" />
+                    <HBox alignment="CENTER" spacing="15">
+                        <Button fx:id="runComparisonBtn" onAction="#onRunComparison" prefHeight="35.0" prefWidth="150.0" styleClass="btn-primary" text="▶ Run Comparison" />
+                        <Button fx:id="clearResultsBtn" onAction="#onClearResults" prefHeight="35.0" prefWidth="120.0" styleClass="btn-secondary" text="🗑 Clear Results" />
+                        <Button fx:id="exportCsvBtn" onAction="#onExportCsv" prefHeight="35.0" prefWidth="140.0" styleClass="btn-secondary" text="📄 Export CSV" />
+                    </HBox>
+                </VBox>
+            </bottom>
+        </BorderPane>
+    </Tab>
+
+    <Tab styleClass="tab-header" text="🎬 Sorting Visualization">
+        <BorderPane>
+            <top>
+                <ToolBar styleClass="viz-toolbar">
+                    <HBox alignment="CENTER_LEFT" spacing="15">
+                        <padding><Insets bottom="5" left="10" right="10" top="5" /></padding>
+                        <Label styleClass="toolbar-label" text="Algorithm:" />
+                        <ComboBox fx:id="vizAlgorithmCombo" prefWidth="160" promptText="Select Algorithm" />
+
+                        <Separator orientation="VERTICAL" />
+
+                        <Label styleClass="toolbar-label" text="Speed:" />
+                        <Slider fx:id="vizSpeedSlider" max="100" min="1" prefWidth="150" value="50" />
+
+                        <Separator orientation="VERTICAL" />
+
+                        <Button fx:id="vizStartBtn" onAction="#onVizStart" styleClass="btn-primary" text="▶ Start" />
+                        <Button fx:id="vizPauseBtn" disable="true" onAction="#onVizPause" styleClass="btn-warning" text="⏸ Pause" />
+                    </HBox>
+                </ToolBar>
+            </top>
+
+            <center>
+                <StackPane styleClass="canvas-container">
+                    <HBox fx:id="visualizationPane" alignment="BOTTOM_CENTER" spacing="2">
+                        <padding><Insets bottom="10" left="10" right="10" /></padding>
+                    </HBox>
+                </StackPane>
+            </center>
+
+            <right>
+                <VBox prefWidth="170" spacing="25" styleClass="viz-sidebar">
+                    <padding><Insets bottom="20" left="10" right="10" top="20" /></padding>
+
+                    <VBox spacing="10">
+                        <Label styleClass="sidebar-title" text="🛠 Array Setup" />
+                        <VBox spacing="5">
+                            <Label styleClass="field-label" text="Type:" />
+                            <ComboBox fx:id="vizArrayTypeCombo" maxWidth="Infinity" promptText="Select Type" />
+                        </VBox>
+                        <VBox spacing="5">
+                            <Label styleClass="field-label" text="Size (Max 100):" />
+                            <TextField fx:id="vizArraySizeField" promptText="e.g., 50" />
+                        </VBox>
+                        <Button fx:id="vizGenerateBtn" maxWidth="Infinity" onAction="#onVizGenerate" styleClass="btn-secondary" text="⚡ Generate" />
+                        <Button fx:id="vizResetBtn" maxWidth="Infinity" onAction="#onVizReset" styleClass="btn-secondary" text="🔄 Reset" />
+                    </VBox>
+
+                    <Separator />
+
+                    <VBox spacing="12">
+                        <Label styleClass="sidebar-title" text="📊 Live Metrics" />
+                        <VBox spacing="8" styleClass="metrics-box">
+                            <Label fx:id="vizComparisonsLabel" styleClass="metric-label" text="Comparisons: 0" />
+                            <Label fx:id="vizInterchangesLabel" styleClass="metric-label" text="Interchanges: 0" />
+                            <Label fx:id="vizStepLabel" styleClass="metric-label" text="Step: 0" />
+                        </VBox>
+                    </VBox>
+                </VBox>
+            </right>
+        </BorderPane>
+    </Tab>
+</TabPane>

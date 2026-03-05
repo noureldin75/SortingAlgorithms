@@ -15,6 +15,25 @@ public class sortStep {
         this.rightidx = builder.rightidx;
     }
 
+    public int[] getArrayState() {
+        return arrayState;
+    }
+
+    public int getCurrentidx() {
+        return currentidx;
+    }
+
+    public int getCompareidx() {
+        return compareidx;
+    }
+
+    public int getLeftidx() {
+        return leftidx;
+    }
+
+    public int getRightidx() {
+        return rightidx;
+    }
 
     public static class Builder {
         private int [] arrayState;
