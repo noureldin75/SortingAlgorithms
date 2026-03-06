@@ -46,7 +46,7 @@ public class MainController {
     @FXML private Button vizStartBtn, vizPauseBtn, vizGenerateBtn, vizResetBtn;
     @FXML private HBox visualizationPane;
     @FXML private TextField vizArraySizeField;
-    @FXML private Label vizComparisonsLabel, vizInterchangesLabel, vizStepLabel;
+    @FXML private Label vizComparisonsLabel, vizInterchangesLabel, vizStepLabel, vizBoundsLabel;
 
     // State Variables
     private static final String[] ALGORITHM_NAMES = {"Selection Sort", "Insertion Sort", "Bubble Sort", "Merge Sort", "Heap Sort", "Quick Sort"};
@@ -281,8 +281,15 @@ public class MainController {
             final int stepNum = i + 1;
 
             KeyFrame frame = new KeyFrame(Duration.millis(i * delayMs), e -> {
-                DrawHelper.drawArrayHighlighted(visualizationPane, step.getArrayState(), step.getCurrentidx(), step.getCompareidx());
+                DrawHelper.drawArrayFull(visualizationPane, step.getArrayState(),
+                        step.getCurrentidx(), step.getCompareidx(),
+                        step.getLeftidx(), step.getRightidx());
                 vizStepLabel.setText("Step: " + stepNum + " / " + steps.size());
+                if (step.getLeftidx() >= 0 && step.getRightidx() >= 0) {
+                    vizBoundsLabel.setText("Bounds: [" + step.getLeftidx() + " .. " + step.getRightidx() + "]");
+                } else {
+                    vizBoundsLabel.setText("Bounds: full array");
+                }
             });
             sortTimeline.getKeyFrames().add(frame);
         }
@@ -324,6 +331,7 @@ public class MainController {
         vizComparisonsLabel.setText("Comparisons: 0");
         vizInterchangesLabel.setText("Interchanges: 0");
         vizStepLabel.setText("Step: 0");
+        vizBoundsLabel.setText("Bounds: --");
     }
 
     private Arraytype toArraytype(String label) {

@@ -221,6 +221,7 @@
                                                 <Label fx:id="vizComparisonsLabel" styleClass="metric-label" text="Comparisons: 0" />
                                                 <Label fx:id="vizInterchangesLabel" styleClass="metric-label" text="Interchanges: 0" />
                                                 <Label fx:id="vizStepLabel" styleClass="metric-label" text="Step: 0" />
+                                                <Label fx:id="vizBoundsLabel" styleClass="metric-label" text="Bounds: --" />
                                             </children>
                                         </VBox>
                                     </children>
