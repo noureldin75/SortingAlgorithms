@@ -9,7 +9,7 @@ public class AlgorithmFactory {
             case "Selection Sort":
                 return new SelectionSort();
             case "Insertion Sort":
-                return new InsersionSort(); // نفس السبلينج بتاعك
+                return new InsersionSort();
             case "Bubble Sort":
                 return new BubbleSort();
             case "Merge Sort":
