@@ -97,6 +97,13 @@ public class MainController {
         vizArrayTypeCombo.getItems().addAll(ARRAY_TYPE_LABELS);
         vizArrayTypeCombo.getSelectionModel().selectFirst();
         vizArraySizeField.setText("50");
+        vizSpeedSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
+            if (sortTimeline != null) {
+                double currentDelay = Math.max(5, 200 - (newVal.doubleValue() * 1.95));
+
+                sortTimeline.setRate(100.0 / currentDelay);
+            }
+        });
     }
 
     @FXML
@@ -126,7 +133,9 @@ public class MainController {
         int size, runs;
         try {
             size = Integer.parseInt(arraySizeField.getText().trim());
+            size=Math.max(5,Math.min(size,20000));
             runs = Integer.parseInt(numRunsField.getText().trim());
+            runs=Math.max(1,Math.min(runs,20));
         } catch (NumberFormatException ex) {
             showAlert("Invalid Input", "Array size and number of runs must be valid integers.");
             return;
@@ -258,7 +267,6 @@ public class MainController {
 
         stopAnimation();
 
-        if (visOriginalArray != null) visCurrentArray = visOriginalArray.clone();
         if (visCurrentArray == null) {
             showAlert("No Array", "Please generate an array first.");
             return;
@@ -274,13 +282,13 @@ public class MainController {
         vizInterchangesLabel.setText("Interchanges: " + result.getInterchanges());
 
         sortTimeline = new Timeline();
-        double delayMs = Math.max(5, 200 - (vizSpeedSlider.getValue() * 1.95));
+        double baseDelay = 100.0;
 
         for (int i = 0; i < steps.size(); i++) {
             final sortStep step = steps.get(i);
             final int stepNum = i + 1;
 
-            KeyFrame frame = new KeyFrame(Duration.millis(i * delayMs), e -> {
+            KeyFrame frame = new KeyFrame(Duration.millis(i * baseDelay), e -> {
                 DrawHelper.drawArrayFull(visualizationPane, step.getArrayState(),
                         step.getCurrentidx(), step.getCompareidx(),
                         step.getLeftidx(), step.getRightidx());
@@ -293,12 +301,14 @@ public class MainController {
             });
             sortTimeline.getKeyFrames().add(frame);
         }
+        double initialDelay = Math.max(5, 200 - (vizSpeedSlider.getValue() * 1.95));
+        sortTimeline.setRate(baseDelay / initialDelay);
 
         sortTimeline.setOnFinished(e -> {
             DrawHelper.drawArray(visualizationPane, steps.get(steps.size() - 1).getArrayState());
             vizStepLabel.setText("Done ✓  (" + steps.size() + " steps)");
             vizPauseBtn.setDisable(true);
-            vizStartBtn.setDisable(false);
+            vizStartBtn.setDisable(true);
             isPaused = false;
         });
 
